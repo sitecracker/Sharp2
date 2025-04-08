@@ -1,0 +1,12 @@
+using first_lec.Domain;
+
+namespace first_lec.Services.Abstraction
+{
+    public interface ICarService
+    {
+        public List<Car> GetAllCars();
+        public void AddCar(Car car);
+        public void UpdateColor(string color, Guid id);
+        public void DeleteCar(Guid id);
+    }
+}
