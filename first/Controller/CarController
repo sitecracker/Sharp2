@@ -1,0 +1,44 @@
+using first_lec.Domain;
+using first_lec.Services.Abstraction;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace first_lec.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CarController : ControllerBase
+    {
+        public ICarService _carService;
+
+        public CarController(ICarService carService)
+        {
+            _carService = carService;
+        }
+
+        [HttpGet]
+        public List<Car> GetAllCars()
+        {
+            return _carService.GetAllCars();
+        }
+
+        [HttpPost]
+        public void AddCar(Car car)
+        {
+            _carService.AddCar(car);
+        }
+
+
+        [HttpPut]
+        public void UpdateColor(string color, Guid id) 
+        {
+            _carService.UpdateColor(color, id);
+        }
+
+        [HttpDelete]
+        public void DeleteCar(Guid id) 
+        {
+            _carService.DeleteCar(id);
+        }
+    }
+}
