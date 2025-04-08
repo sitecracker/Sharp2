@@ -1,0 +1,49 @@
+using first_lec.Database;
+using first_lec.Domain;
+using first_lec.Services.Abstraction;
+
+namespace first_lec.Services.Implementation
+{
+    public class CarService : ICarService
+    {
+
+        public AppDbContext _dbContext;
+
+        public CarService(AppDbContext appDbContext)
+        {
+            _dbContext = appDbContext;
+        }
+
+        public void AddCar(Car car)
+        {
+            _dbContext.Cars.Add(car);
+            _dbContext.SaveChanges();
+        }
+
+        public void DeleteCar(Guid id)
+        {
+            var carInDb = _dbContext.Cars.FirstOrDefault(c => c.Id == id);
+            if (carInDb != null)
+            {
+                _dbContext.Cars.Remove(carInDb);
+                _dbContext.SaveChanges();
+            }
+        }
+
+        public List<Car> GetAllCars()
+        {
+            var cars = _dbContext.Cars.ToList();
+            return cars;
+        }
+
+        public void UpdateColor(string color, Guid id)
+        {
+            var carInDb = _dbContext.Cars.FirstOrDefault(c => c.Id == id);
+            if (carInDb != null) 
+            {
+                carInDb.Color = color;
+                _dbContext.SaveChanges();
+            }
+        }
+    }
+}
