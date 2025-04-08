@@ -1,0 +1,8 @@
+namespace second_lec.Domain
+{
+    public class PersonDto
+    {
+        public string FirstName { get; set; }
+        public int Age { get; set; }
+    }
+}
