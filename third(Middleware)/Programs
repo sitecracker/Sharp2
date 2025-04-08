@@ -1,0 +1,4 @@
+ADD ONLY THIS
+
+app.UseMiddleware<RequestResponseMiddleware>();
+app.UseMiddleware<TimeMiddleware>();
