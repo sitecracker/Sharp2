@@ -1,0 +1,11 @@
+using second_lec.Domain;
+
+namespace second_lec.Services
+{
+    public interface IPersonService
+    {
+        public List<PersonDto> GetAllPersonInfo();
+        public List<PersonDto> GetPersonInfoByMapping();
+        public void AddPerson(PersonDto personDto);
+    }
+}
