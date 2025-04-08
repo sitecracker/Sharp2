@@ -1,0 +1,9 @@
+ADD ONLY THIS
+
+
+
+builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<DbContext, PersonDbContext>();
+
+builder.Services.AddDbContext<PersonDbContext>();
+
