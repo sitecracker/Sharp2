@@ -1,0 +1,51 @@
+using Mapster;
+using second_lec.Database;
+using second_lec.Domain;
+
+namespace second_lec.Services
+{
+    public class PersonService : IPersonService
+    {
+        public PersonDbContext _personDbContext;
+
+        public PersonService(PersonDbContext personDbContext)
+        {
+            _personDbContext = personDbContext;
+        }
+
+        public void AddPerson(PersonDto personDto)
+        {
+            _personDbContext.People.Add(new Person
+            {
+                FirstName = personDto.FirstName,
+                Age = personDto.Age,
+            });
+            _personDbContext.SaveChanges();
+        }
+
+        public List<PersonDto> GetAllPersonInfo()
+        {
+            var people = _personDbContext.People.ToList();
+            
+            var peopleDto = new List<PersonDto>();
+
+            foreach (var person in people) 
+            {
+                var personDto = new PersonDto
+                {
+                    FirstName = person.FirstName,
+                    Age = person.Age,
+                };
+                peopleDto.Add(personDto);
+            }
+            return peopleDto;
+        }
+
+        public List<PersonDto> GetPersonInfoByMapping()
+        {
+            var people = _personDbContext.People.ToList();
+            var peopleDto = people.Adapt<List<PersonDto>>();
+            return peopleDto;
+        }
+    }
+}
