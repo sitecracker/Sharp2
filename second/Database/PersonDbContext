@@ -1,0 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using second_lec.Domain;
+
+namespace second_lec.Database
+{
+    public class PersonDbContext : DbContext
+    {
+        public DbSet<Person> People { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("PersonsDb");
+        }
+    }
+}
