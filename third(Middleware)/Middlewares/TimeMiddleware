@@ -1,0 +1,25 @@
+namespace Lecture_3_Gr1.Middlewares
+{
+    public class TimeMiddleware
+    {
+        private RequestDelegate _next;
+
+        public TimeMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            var time = DateTime.Now;
+
+            await _next(context);
+
+            var secondTime = DateTime.Now;
+
+            var result = secondTime - time;
+
+            Console.WriteLine($"Time is: {result.Milliseconds}");
+        }
+    }
+}
