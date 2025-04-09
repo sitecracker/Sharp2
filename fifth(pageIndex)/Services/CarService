@@ -1,0 +1,37 @@
+using fifth_lec.Database;
+using fifth_lec.Domain;
+
+namespace fifth_lec.Services
+{
+    public class CarService : ICarService
+    {
+        public CarDbContext _carDbContext;
+
+        public CarService(CarDbContext carDbContext) 
+        {
+            _carDbContext = carDbContext;
+        }
+
+
+        public void AddCar(Car car)
+        {
+            _carDbContext.Cars.Add(car);
+            _carDbContext.SaveChanges();
+        }
+
+        public List<Car> GetAllCars(int minCreateYear, bool isWhite)
+        {
+            var cars = _carDbContext.Cars
+                .Where(x => x.CreateYear > minCreateYear && x.IsWhite == isWhite)
+                .OrderBy(x => x.CreateYear).ToList();
+            return cars;
+        }
+
+        public List<Car> GetCars(int pageIndex, int elementCount)
+        {
+            var cars = _carDbContext.Cars.Skip((pageIndex -1) * elementCount)
+                .Take(elementCount).ToList();
+            return cars;
+        }
+    }
+}
