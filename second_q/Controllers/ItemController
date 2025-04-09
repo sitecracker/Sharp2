@@ -1,0 +1,45 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using second_quiz.Domain;
+using second_quiz.Services;
+
+namespace second_quiz.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ItemController : ControllerBase
+    {
+        public IItemService _itemService;
+
+        public ItemController(IItemService itemService)
+        {
+            _itemService = itemService;
+        }
+
+        [HttpPost("add-element-to-cache")]
+        public void AddItemsToCache(Item item) 
+        {
+            _itemService.AddItemsToCache(item);
+        }
+
+        [HttpGet("get-element-from-cache")]
+        public List<Item> GetItemsFromCache() 
+        {
+            return _itemService.GetItemsFromCache();
+        }
+
+        [HttpGet("get-items")]
+        public List<Item> GetItems(int pageIndex, int pageSize) 
+        {
+            return _itemService.GetItems(pageIndex, pageSize);
+        }
+
+        [HttpGet("get-filtered-items")]
+        public List<Item> GetFilteredItems(string type, int minYear) 
+        {
+            return _itemService.GetFilteredItems(type, minYear);
+        }
+
+
+    }
+}
