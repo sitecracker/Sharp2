@@ -1,0 +1,8 @@
+namespace first_quiz.Domain
+{
+    public class ProductDto
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+    }
+}
