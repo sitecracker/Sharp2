@@ -9,7 +9,7 @@ namespace second_lec.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        public IPersonService _personService { get; set; }
+        public IPersonService _personService;
 
         public PersonController(IPersonService personService)
         {
