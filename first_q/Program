@@ -1,0 +1,8 @@
+ADD ONLY THIS
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<DbContext, ProductDbContext>();
+builder.Services.AddDbContext<ProductDbContext>();
+
+
+app.UseMiddleware<CustomMiddleware>();
