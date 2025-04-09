@@ -1,0 +1,40 @@
+using fifth_lec.Domain;
+using fifth_lec.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace fifth_lec.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CarController : ControllerBase
+    {
+        public ICarService _carService;
+
+        public CarController(ICarService carService)
+        {
+            _carService = carService;
+        }
+
+        [HttpGet("get-all-cars-by-year")]
+        public List<Car> GetAllCars(int minCreateYear, bool isWhite) 
+        {
+            return _carService.GetAllCars(minCreateYear, isWhite);
+        }
+
+        [HttpGet("get-all-cars")]
+        public List<Car> GetCars(int pageIndex, int elementCount) 
+        {
+            return _carService.GetCars(pageIndex, elementCount);
+        }
+
+        [HttpPost("add-car")]
+        public void AddCar(Car car) 
+        {
+            _carService.AddCar(car);
+        }
+
+
+
+    }
+}
