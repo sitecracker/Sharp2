@@ -1,0 +1,10 @@
+namespace fifth_lec.Domain
+{
+    public class Car
+    {
+        public Guid id {  get; set; }
+        public string? Manufacturer { get; set; }
+        public int CreateYear { get; set; }
+        public bool IsWhite { get; set; }
+    }
+}
