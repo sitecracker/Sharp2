@@ -1,0 +1,21 @@
+namespace first_quiz.MIddleware
+{
+    public class CustomMiddleware
+    {
+        private RequestDelegate _next;
+
+        public CustomMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            Console.WriteLine($"Request Method: {context.Request.Method}");
+
+            Console.WriteLine($"Request Path: {context.Request.Path}");
+
+            await _next(context);
+        }
+    }
+}
