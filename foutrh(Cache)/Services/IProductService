@@ -1,0 +1,8 @@
+namespace fourth_lec.Services
+{
+    public interface IProductService
+    {
+        public List<string> AddProductsToCache();
+        public List<string> GetAllProductsFromCache();
+    }
+}
