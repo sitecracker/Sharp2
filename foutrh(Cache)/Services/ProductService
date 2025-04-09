@@ -1,0 +1,36 @@
+
+using Microsoft.Extensions.Caching.Memory;
+
+namespace fourth_lec.Services
+{
+    public class ProductService : IProductService
+    {
+        private IMemoryCache _cache;
+        
+        public ProductService(IMemoryCache cache) 
+        {
+            _cache = cache;
+        }
+
+        public List<string> AddProductsToCache()
+        {
+            var products = new List<string>() { "apple", "banana", "orange" };
+            _cache.Set("products", products);
+            return products;
+        }
+
+        public List<string> GetAllProductsFromCache()
+        {
+            _cache.TryGetValue("products", out List<string> products);
+
+            if (products != null)
+            {
+                return products;
+            }
+            else 
+            {
+                return new List<string>();
+            }
+        }
+    }
+}
