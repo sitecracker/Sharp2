@@ -1,0 +1,11 @@
+using fifth_lec.Domain;
+
+namespace fifth_lec.Services
+{
+    public interface ICarService
+    {
+        public List<Car> GetAllCars(int minCreateYear, bool isWhite);
+        public List<Car> GetCars(int pageIndex, int elementCount);
+        public void AddCar(Car car);
+    }
+}
