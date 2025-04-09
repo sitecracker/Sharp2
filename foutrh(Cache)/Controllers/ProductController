@@ -1,0 +1,31 @@
+using fourth_lec.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace fourth_lec.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductController : ControllerBase
+    {
+        public IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
+        [HttpPost("add-product-to-cahche")]
+        public List<string> AddProductsToCache() 
+        {
+            return _productService.AddProductsToCache();
+        }
+
+        [HttpGet("get-all-products-from-cache")]
+        public List<string> GetAllProductsFromCache() 
+        {
+            return _productService.GetAllProductsFromCache();
+        }
+
+    }
+}
