@@ -1,0 +1,15 @@
+using fifth_lec.Domain;
+using Microsoft.EntityFrameworkCore;
+
+namespace fifth_lec.Database
+{
+    public class CarDbContext : DbContext
+    {
+        public DbSet<Car> Cars { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("CarDb");
+        }
+    }
+}
