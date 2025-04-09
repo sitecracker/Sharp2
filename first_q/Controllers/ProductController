@@ -1,0 +1,38 @@
+using first_quiz.Domain;
+using first_quiz.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace first_quiz.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductController : ControllerBase
+    {
+        public IProductService _productService;
+
+        public ProductController(IProductService productService) 
+        {
+            _productService = productService;
+        }
+
+        [HttpGet("get-all-products")]
+        public List<Product> AllProducts() 
+        {
+            return _productService.AllProducts();
+        }
+
+        [HttpPost("add-product")]
+        public void AddProduct(Product product) 
+        {
+            _productService.AddProduct(product);
+        }
+
+        [HttpGet("get-all-product-by-mapping")]
+        public List<ProductDto> AllProductsByMapping() 
+        {
+            return _productService.AllProductsByMapping();
+        }
+
+    }
+}
