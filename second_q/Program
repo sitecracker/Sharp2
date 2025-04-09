@@ -1,0 +1,4 @@
+ADD ONLY THIS
+
+builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddMemoryCache();
