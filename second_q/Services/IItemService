@@ -1,0 +1,12 @@
+using second_quiz.Domain;
+
+namespace second_quiz.Services
+{
+    public interface IItemService
+    {
+        public void AddItemsToCache(Item item);
+        public List<Item> GetItemsFromCache();
+        public List<Item> GetItems(int pageIndex, int pageSize);
+        public List<Item> GetFilteredItems(string type, int minYear);
+    }
+}
