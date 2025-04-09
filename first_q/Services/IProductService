@@ -1,0 +1,11 @@
+using first_quiz.Domain;
+
+namespace first_quiz.Services
+{
+    public interface IProductService
+    {
+        public List<Product> AllProducts();
+        public void AddProduct(Product product);
+        public List<ProductDto> AllProductsByMapping();
+    }
+}
