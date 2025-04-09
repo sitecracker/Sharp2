@@ -1,0 +1,34 @@
+using first_quiz.Database;
+using first_quiz.Domain;
+using Mapster;
+
+namespace first_quiz.Services
+{
+    public class ProductService : IProductService
+    {
+        public ProductDbContext _productDbContext;
+
+        public ProductService(ProductDbContext productDbContext)
+        {
+            _productDbContext = productDbContext;
+        }
+
+        public void AddProduct(Product product)
+        {
+            _productDbContext.Product.Add(product);
+            _productDbContext.SaveChanges();
+        }
+
+        public List<Product> AllProducts()
+        {
+            return _productDbContext.Product.ToList();
+        }
+
+        public List<ProductDto> AllProductsByMapping()
+        {
+            var products = _productDbContext.Product.ToList();
+            var productDro = products.Adapt<List<ProductDto>>();
+            return productDro;
+        }
+    }
+}
