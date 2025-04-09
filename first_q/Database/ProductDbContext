@@ -1,0 +1,15 @@
+using first_quiz.Domain;
+using Microsoft.EntityFrameworkCore;
+
+namespace first_quiz.Database
+{
+    public class ProductDbContext : DbContext
+    {
+        public DbSet<Product> Product { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("ProductDb");
+        }
+    }
+}
