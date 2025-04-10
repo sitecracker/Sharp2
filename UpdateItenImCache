@@ -1,0 +1,14 @@
+public void UpdateItem(int id, string type)  
+{
+    if (_memoryCache.TryGetValue("items", out List<Item> allItems))
+    {
+        var item = allItems.FirstOrDefault(x => x.Id == id);
+        if (item != null)
+        {
+            item.Type = type;
+
+            // Обновляем кэш
+            _memoryCache.Set("items", allItems);
+        }
+    }
+}
