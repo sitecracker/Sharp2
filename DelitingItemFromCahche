@@ -1,0 +1,14 @@
+public void GetFilteredItems(int id) 
+{
+    if (_memoryCache.TryGetValue("items", out List<Item> allItems))
+    {
+        var item = allItems.FirstOrDefault(x => x.Id == id);
+        if (item != null)
+        {
+            allItems.Remove(item);
+
+            // Обновляем кэш
+            _memoryCache.Set("items", allItems);
+        }
+    }
+}
