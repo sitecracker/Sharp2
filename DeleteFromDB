@@ -1,0 +1,8 @@
+public void DeleteProduct(int id)
+{
+    var product = _productDbContext.Product.FirstOrDefault(x=> x.id == id);
+    if (product != null) {
+        _productDbContext.Product.Remove(product);
+        _productDbContext.SaveChanges();
+    }
+}
