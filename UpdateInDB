@@ -1,0 +1,9 @@
+public void UpdateProduct(int id, string name)
+{
+    var product = _productDbContext.Product.FirstOrDefault(x=> x.id == id);
+    if (product != null) 
+    {
+        product.Name = name;
+        _productDbContext.SaveChanges();
+    }
+}
