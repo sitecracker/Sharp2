@@ -1,4 +1,4 @@
-public void GetFilteredItems(int id) 
+public void DeleteItemFromCache(int id) 
 {
     if (_memoryCache.TryGetValue("items", out List<Item> allItems))
     {
